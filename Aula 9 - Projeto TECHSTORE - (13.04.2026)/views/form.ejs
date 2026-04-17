@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+</head>
+<body>
+
+    <h1>CADASTROS</h1>
+
+    <% if (tipo === 'cliente') { %>
+
+        <h2>Cadastrar Cliente</h2>
+        
+
+        <form action="/cliente/adicionar" method="POST">
+
+            <label>Nome:</label><br>
+            <input type="text" name="Nome_Cliente" required><br><br>
+
+            <label>Email:</label><br>
+            <input type="email" name="Email" required><br><br>
+
+            <label>Telefone:</label><br>
+            <input type="text" name="Telefone" required><br><br>
+
+            <button type="submit">Salvar</button>
+        </form>
+
+    <% } %>
+
+
+    <% if (tipo === 'produto') { %>
+
+        <h2>Cadastrar Produto</h2>
+
+        <form action="/produto/adicionar" method="POST">
+
+            <label>Nome:</label><br>
+            <input type="text" name="Nome_Produtos" required><br><br>
+
+            <label>Preço:</label><br>
+            <input type="number" name="Preco" step="0.01" required><br><br>
+
+            <label>Cliente:</label><br>
+            <select name="ID_Cliente" required>
+                <% clientes.forEach(cliente => { %>
+                    <option value="<%= cliente.ID_Cliente %>">
+                        <%= cliente.Nome_Cliente %>
+                    </option>
+                <% }) %>
+            </select><br><br>
+
+            <label>Categoria:</label><br>
+            <select name="ID_Categorias" required>
+                <% categorias.forEach(categoria => { %>
+                    <option value="<%= categoria.ID_Categorias %>">
+                        <%= categoria.Nome_Categorias %>
+                    </option>
+                <% }) %>
+            </select><br><br>
+
+            <button type="submit">Salvar</button>
+        </form>
+
+    <% } %>
+
+
+
+
+    <% if (tipo === 'categoria') { %>
+
+        <h2>Cadastrar Categoria</h2>
+        
+
+        <form action="/categoria/adicionar" method="POST">
+
+            <label>Nome:</label><br>
+            <input type="text" name="Nome_Categorias" required><br><br>
+
+            <button type="submit">Salvar</button>
+        </form>
+
+    <% } %>
+    
+    <br>
+    <a href="/"><button>Voltar</button></a>
+
+</body>
+</html>
