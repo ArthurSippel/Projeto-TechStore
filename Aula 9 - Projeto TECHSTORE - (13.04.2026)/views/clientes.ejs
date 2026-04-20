@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <script>
+
+        function confirmDelete() {
+            return confirm('Você tem certeza que deseja deletar este cliente?');
+        }
+
+    </script>
+</head>
+<body>
+
+    <h1>Clientes Cadastrados</h1>
+
+    <a href="/cliente/form">
+        <button>Novo Cliente</button>
+    </a>
+
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </tr>
+
+        <% registros.forEach(clientes => { %>
+            <tr>
+                <td><%= clientes.id_clientes %></td>
+                <td><%= clientes.nome_clientes %></td>
+                <td><%= clientes.email_clientes %></td>
+                <td><%= clientes.telefone_clientes %></td>
+
+                <td>
+                    <a href="/produto/editar/<%= clientes.id_clientes %>">
+                        <button>Editar</button>
+                    </a>
+
+                    <a href="/produto/deletar/<%= clientes.id_clientes %>" onclick="return confirm('Deseja deletar?')">
+                        <button>Deletar</button>
+                    </a>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+
+</body>
+</html>

@@ -14,16 +14,16 @@
 
         <form action="/cliente/atualizar" method="POST">
 
-            <input type="hidden" name="ID_Cliente" value="<%= registro.ID_Cliente %>">
+            <input type="hidden" name="id_clientes" value="<%= registro.id_clientes %>">
 
             <label>Nome:</label><br>
-            <input type="text" name="Nome_Cliente" value="<%= registro.Nome_Cliente %>" required><br><br>
+            <input type="text" name="nome_clientes" value="<%= registro.nome_clientes %>" required><br><br>
 
             <label>Email:</label><br>
-            <input type="email" name="Email" value="<%= registro.Email %>" required><br><br>
+            <input type="email" name="email_clientes" value="<%= registro.email_clientes %>" required><br><br>
 
             <label>Telefone:</label><br>
-            <input type="text" name="Telefone" value="<%= registro.Telefone %>" required><br><br>
+            <input type="text" name="telefone_clientes" value="<%= registro.telefone_clientes %>" required><br><br>
 
             <button type="submit">Salvar</button>
         </form>
@@ -37,30 +37,20 @@
 
         <form action="/produto/atualizar" method="POST">
 
-            <input type="hidden" name="ID_Produtos" value="<%= registro.ID_Produtos %>">
+            <input type="hidden" name="id_produtos" value="<%= registro.id_produtos %>">
 
             <label>Nome:</label><br>
-            <input type="text" name="Nome_Produtos" value="<%= registro.Nome_Produtos %>" required><br><br>
+            <input type="text" name="nome_produtos" value="<%= registro.nome_produtos %>" required><br><br>
 
             <label>Preço:</label><br>
-            <input type="number" name="Preco" step="0.01" value="<%= registro.Preco %>" required><br><br>
-
-            <label>Cliente:</label><br>
-            <select name="ID_Cliente" required>
-                <% clientes.forEach(cliente => { %>
-                    <option value="<%= cliente.ID_Cliente %>" 
-                        <%= cliente.ID_Cliente == registro.ID_Cliente ? 'selected' : '' %>>
-                        <%= cliente.Nome_Cliente %>
-                    </option>
-                <% }) %>
-            </select><br><br>
+            <input type="number" name="preco_produtos" step="0.01" value="<%= registro.preco_produtos %>" required><br><br>
 
             <label>Categoria:</label><br>
-            <select name="ID_Categorias" required>
-                <% categorias.forEach(categoria => { %>
-                    <option value="<%= categoria.ID_Categorias %>" 
-                        <%= categoria.ID_Categorias == registro.ID_Categorias ? 'selected' : '' %>>
-                        <%= categoria.Nome_Categorias %>
+            <select name="id_categorias" required>
+                <% categorias.forEach(categorias => { %>
+                    <option value="<%= categorias.id_categorias %>" 
+                        <%= categorias.id_categorias == registro.id_categorias ? 'selected' : '' %>>
+                        <%= categorias.nome_categorias %>
                     </option>
                 <% }) %>
             </select><br><br>

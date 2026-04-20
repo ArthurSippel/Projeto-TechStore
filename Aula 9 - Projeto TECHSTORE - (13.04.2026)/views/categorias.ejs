@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorias</title>
+    <script>
+
+        function confirmDelete() {
+            return confirm('Você tem certeza que deseja deletar este cliente?');
+        }
+
+    </script>
+</head>
+<body>
+
+    <h1>Categorias Cadastradas</h1>
+
+    <a href="/categoria/form">
+        <button>Nova Categoria</button>
+    </a>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+        </tr>
+
+        <% registros.forEach(categorias => { %>
+            <tr>
+                <td><%= produto.id_categorias %></td>
+                <td><%= produto.nome_categorias %></td>
+
+                <td>
+                    <a href="/produto/editar/<%= categorias.id_categorias %>">
+                        <button>Editar</button>
+                    </a>
+
+                    <a href="/produto/deletar/<%= categorias.id_categorias %>" onclick="return confirm('Deseja deletar?')">
+                        <button>Deletar</button>
+                    </a>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+
+</body>
+</html>

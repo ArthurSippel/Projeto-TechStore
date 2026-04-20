@@ -16,13 +16,13 @@
         <form action="/cliente/adicionar" method="POST">
 
             <label>Nome:</label><br>
-            <input type="text" name="Nome_Cliente" required><br><br>
+            <input type="text" name="nome_clientes" required><br><br>
 
             <label>Email:</label><br>
-            <input type="email" name="Email" required><br><br>
+            <input type="email" name="email_clientes" required><br><br>
 
             <label>Telefone:</label><br>
-            <input type="text" name="Telefone" required><br><br>
+            <input type="text" name="telefone_clientes" required><br><br>
 
             <button type="submit">Salvar</button>
         </form>
@@ -37,25 +37,16 @@
         <form action="/produto/adicionar" method="POST">
 
             <label>Nome:</label><br>
-            <input type="text" name="Nome_Produtos" required><br><br>
+            <input type="text" name="nome_produtos" required><br><br>
 
             <label>Preço:</label><br>
-            <input type="number" name="Preco" step="0.01" required><br><br>
-
-            <label>Cliente:</label><br>
-            <select name="ID_Cliente" required>
-                <% clientes.forEach(cliente => { %>
-                    <option value="<%= cliente.ID_Cliente %>">
-                        <%= cliente.Nome_Cliente %>
-                    </option>
-                <% }) %>
-            </select><br><br>
+            <input type="number" name="preco_produtos" step="0.01" required><br><br>
 
             <label>Categoria:</label><br>
-            <select name="ID_Categorias" required>
-                <% categorias.forEach(categoria => { %>
-                    <option value="<%= categoria.ID_Categorias %>">
-                        <%= categoria.Nome_Categorias %>
+            <select name="id_categorias" required>
+                <% categorias.forEach(categorias => { %>
+                    <option value="<%= categorias.id_categorias %>">
+                        <%= categorias.nome_categorias %>
                     </option>
                 <% }) %>
             </select><br><br>
@@ -76,7 +67,7 @@
         <form action="/categoria/adicionar" method="POST">
 
             <label>Nome:</label><br>
-            <input type="text" name="Nome_Categorias" required><br><br>
+            <input type="text" name="nome_categorias" required><br><br>
 
             <button type="submit">Salvar</button>
         </form>

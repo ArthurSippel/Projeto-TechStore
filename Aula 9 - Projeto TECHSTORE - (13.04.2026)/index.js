@@ -15,190 +15,159 @@ const conectar = mysql.createConnection({
     database: 'techstore'
 });
 
-// Home
+// PÁGINA INICIAL
 app.get('/', (req, res) => {
-    const query = 'SELECT Produtos.ID_Produtos, Produtos.Nome_Produtos, Produtos.Preco, Cliente.Nome_Cliente, Categoria.Nome_Categorias FROM Produtos INNER JOIN Cliente ON Produtos.ID_Cliente = Cliente.ID_Cliente INNER JOIN Categoria ON Produtos.ID_Categorias = Categoria.ID_Categorias';
-    conectar.query(query, (err, results) => {
-        res.render('index', {registros: results});
-    });
+    res.render('index');
 });
 
-// CLIENTE
 
 
-// rota para a pág formulário cliente
-app.get('/cliente/form', (req, res) => {
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// CLIENTES
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//rota página clientes
+app.get('/clientes', (req, res) => {
+
+    conectar.query('SELECT * FROM clientes', (err, results) => {
+
+        if (err) {
+            console.error(err);
+            return res.send('Erro ao buscar clientes');
+        }
+
+        res.render('clientes', { registros: results });
+    });
+
+});
+
+//rota para a pág do form de clientes
+app.get('/clientes/form', (req, res) => {
     res.render('form', { tipo: 'cliente' });
 });
 
+//rota para os dados passarem form -> banco
+app.post('/clientes/adicionar', (req, res) => {
 
-// rota do formulário cliente para o banco
-app.post('/cliente/adicionar', (req, res) => {
-
-    const { Nome_Cliente, Email, Telefone } = req.body;
+    const { nome_clientes, email_clientes, telefone_clientes } = req.body;
 
     conectar.query(
-        'INSERT INTO Cliente (Nome_Cliente, Email, Telefone) VALUES (?, ?, ?)',
-        [Nome_Cliente, Email, Telefone],
-        () => res.redirect('/')
+        'INSERT INTO clientes (nome_clientes, email_clientes, telefone_clientes) VALUES (?, ?, ?)',
+        [nome_clientes, email_clientes, telefone_clientes],
+        (err) => {
+
+            if (err) {
+                console.error(err);
+                return res.send('Erro ao cadastrar cliente');
+            }
+
+            res.redirect('/clientes');
+        }
     );
 });
 
-
-
-// PRODUTO
-
-// rota para a pág formulário produto
-app.get('/produto/form', (req, res) => {
-
-    conectar.query('SELECT * FROM Cliente', (err, clientes) => {
-        conectar.query('SELECT * FROM Categoria', (err, categorias) => {
-
-            res.render('form', {
-                tipo: 'produto',
-                clientes,
-                categorias
-            });
-
-        });
-    });
-
-});
-
-// criar produto
-app.post('/produto/adicionar', (req, res) => {
-
-    const { Nome_Produtos, Preco, ID_Cliente, ID_Categorias } = req.body;
+//rota para a pág de edição
+app.get('/clientes/editar/:id', (req, res) => {
 
     conectar.query(
-        'INSERT INTO Produtos (Nome_Produtos, Preco, ID_Cliente, ID_Categorias) VALUES (?, ?, ?, ?)',
-        [Nome_Produtos, Preco, ID_Cliente, ID_Categorias],
-        () => res.redirect('/')
-    );
-});
-
-
-
-// CLIENTE
-
-// Abrir tela editar cliente
-app.get('/cliente/editar/:id', (req, res) => {
-
-    conectar.query(
-        'SELECT * FROM Cliente WHERE ID_Cliente = ?',
+        'SELECT * FROM clientes WHERE id_clientes = (?)',
         [req.params.id],
         (err, results) => {
+
+            if (err) {
+                console.error(err);
+                return res.send('Erro ao buscar cliente');
+            }
 
             res.render('editar', {
                 tipo: 'cliente',
                 registro: results[0]
             });
-
         }
     );
 });
 
-// editar Cliente e salvar
-app.post('/cliente/atualizar', (req, res) => {
+//rota para editar dados
+app.post('/clientes/atualizar', (req, res) => {
 
-    const { ID_Cliente, Nome_Cliente, Email, Telefone } = req.body;
-
-    conectar.query(
-        'UPDATE Cliente SET Nome_Cliente=?, Email=?, Telefone=? WHERE ID_Cliente=?',
-        [Nome_Cliente, Email, Telefone, ID_Cliente],
-        () => res.redirect('/')
-    );
-});
-
-// deletar cliente
-app.get('/cliente/deletar/:id', (req, res) => {
-
-    conectar.query('DELETE FROM Produtos WHERE ID_Cliente=?', [req.params.id], () => {
-
-        conectar.query(
-            'DELETE FROM Cliente WHERE ID_Cliente=?',
-            [req.params.id],
-            () => res.redirect('/')
-        );
-
-    });
-
-});
-
-
-
-// PRODUTO
-
-// Abrir tela editar produto
-app.get('/produto/editar/:id', (req, res) => {
+    const { id_clientes, nome_clientes, email_clientes, telefone_clientes } = req.body;
 
     conectar.query(
-        'SELECT * FROM Produtos WHERE ID_Produtos=?',
-        [req.params.id],
-        (err, results) => {
+        'UPDATE clientes SET nome_clientes=?, email_clientes=?, telefone_clientes=? WHERE id_clientes=?',
+        [nome_clientes, email_clientes, telefone_clientes, id_clientes],
+        (err) => {
 
-            const produto = results[0];
+            if (err) {
+                console.error(err);
+                return res.send('Erro ao atualizar');
+            }
 
-            conectar.query('SELECT * FROM Cliente', (err, clientes) => {
-                conectar.query('SELECT * FROM Categoria', (err, categorias) => {
-
-                    res.render('editar', {
-                        tipo: 'produto',
-                        registro: produto,
-                        clientes,
-                        categorias
-                    });
-
-                });
-            });
-
+            res.redirect('/clientes');
         }
     );
 });
 
-// editar produto e salvar
-app.post('/produto/atualizar', (req, res) => {
-
-    const { ID_Produtos, Nome_Produtos, Preco, ID_Cliente, ID_Categorias } = req.body;
+//rota deletar cliente
+app.get('/clientes/deletar/:id', (req, res) => {
 
     conectar.query(
-        'UPDATE Produtos SET Nome_Produtos=?, Preco=?, ID_Cliente=?, ID_Categorias=? WHERE ID_Produtos=?',
-        [Nome_Produtos, Preco, ID_Cliente, ID_Categorias, ID_Produtos],
-        () => res.redirect('/')
-    );
-});
-
-// deletar produto
-app.get('/produto/deletar/:id', (req, res) => {
-
-    conectar.query(
-        'DELETE FROM Produtos WHERE ID_Produtos=?',
+        'DELETE FROM clientes WHERE id_clientes=?',
         [req.params.id],
-        () => res.redirect('/')
-    );
+        (err) => {
 
-});
+            if (err) {
+                console.error(err);
+                return res.send('Erro ao deletar');
+            }
 
-
-//CATEGORIAS
-
-// rota para a pág formulário categorias
-app.get('/categoria/form', (req, res) => {
-    res.render('form', { tipo: 'categoria' });
-});
-
-
-// rota do formulário categorias para o banco
-app.post('/categoria/adicionar', (req, res) => {
-
-    const { Nome_Categorias } = req.body;
-
-    conectar.query(
-        'INSERT INTO Categoria (Nome_Categorias) VALUES (?)',
-        [Nome_Categorias],
-        () => res.redirect('/')
+            res.redirect('/clientes');
+        }
     );
 });
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// PRODUTOS
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,18 +13,8 @@
 </head>
 <body>
 
-    <h1>Cadastros TechStore</h1>
-
-    <a href="/cliente/form">
-        <button>Novo Cliente</button>
-    </a>
-
     <a href="/produto/form">
         <button>Novo Produto</button>
-    </a>
-
-    <a href="/categoria/form">
-        <button>Nova Categoria</button>
     </a>
 
     <table border="1">
@@ -32,24 +22,22 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Preço</th>
-            <th>Cliente</th>
             <th>Categoria</th>
         </tr>
 
-        <% registros.forEach(produto => { %>
+        <% registros.forEach(produtos => { %>
             <tr>
-                <td><%= produto.ID_Produtos %></td>
-                <td><%= produto.Nome_Produtos %></td>
-                <td><%= produto.Preco %></td>
-                <td><%= produto.Nome_Cliente %></td>
-                <td><%= produto.Nome_Categorias %></td>
+                <td><%= produtos.id_produtos %></td>
+                <td><%= produtos.nome_produtos %></td>
+                <td><%= produtos.preco_produtos %></td>
+                <td><%= produtos.nome_Categorias %></td>
 
                 <td>
-                    <a href="/produto/editar/<%= produto.ID_Produtos %>">
+                    <a href="/produto/editar/<%= produtos.id_produtos %>">
                         <button>Editar</button>
                     </a>
 
-                    <a href="/produto/deletar/<%= produto.ID_Produtos %>" onclick="return confirm('Deseja deletar?')">
+                    <a href="/produto/deletar/<%= produtos.id_produtos %>" onclick="return confirm('Deseja deletar?')">
                         <button>Deletar</button>
                     </a>
                 </td>
