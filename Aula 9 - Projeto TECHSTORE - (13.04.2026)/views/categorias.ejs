@@ -15,7 +15,7 @@
 
     <h1>Categorias Cadastradas</h1>
 
-    <a href="/categoria/form">
+    <a href="/categorias/form">
         <button>Nova Categoria</button>
     </a>
 
@@ -27,21 +27,23 @@
 
         <% registros.forEach(categorias => { %>
             <tr>
-                <td><%= produto.id_categorias %></td>
-                <td><%= produto.nome_categorias %></td>
+                <td><%= categorias.id_categorias %></td>
+                <td><%= categorias.nome_categorias %></td>
 
                 <td>
-                    <a href="/produto/editar/<%= categorias.id_categorias %>">
+                    <a href="/categorias/editar/<%= categorias.id_categorias %>">
                         <button>Editar</button>
                     </a>
 
-                    <a href="/produto/deletar/<%= categorias.id_categorias %>" onclick="return confirm('Deseja deletar?')">
+                    <a href="/categorias/deletar/<%= categorias.id_categorias %>" onclick="return confirm('Deseja deletar?')">
                         <button>Deletar</button>
                     </a>
                 </td>
             </tr>
         <% }) %>
     </table>
+
+    <a href="/"><button>Voltar</button></a>
 
 </body>
 </html>

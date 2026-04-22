@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <a href="/produto/form">
+    <a href="/produtos/form">
         <button>Novo Produto</button>
     </a>
 
@@ -30,20 +30,22 @@
                 <td><%= produtos.id_produtos %></td>
                 <td><%= produtos.nome_produtos %></td>
                 <td><%= produtos.preco_produtos %></td>
-                <td><%= produtos.nome_Categorias %></td>
+                <td><%= produtos.nome_categorias %></td>
 
                 <td>
-                    <a href="/produto/editar/<%= produtos.id_produtos %>">
+                    <a href="/produtos/editar/<%= produtos.id_produtos %>">
                         <button>Editar</button>
                     </a>
 
-                    <a href="/produto/deletar/<%= produtos.id_produtos %>" onclick="return confirm('Deseja deletar?')">
+                    <a href="/produtos/deletar/<%= produtos.id_produtos %>" onclick="return confirm('Deseja deletar?')">
                         <button>Deletar</button>
                     </a>
                 </td>
             </tr>
         <% }) %>
     </table>
+
+    <a href="/"><button>Voltar</button></a>
 
 </body>
 </html>

@@ -15,7 +15,7 @@
 
     <h1>Clientes Cadastrados</h1>
 
-    <a href="/cliente/form">
+    <a href="/clientes/form">
         <button>Novo Cliente</button>
     </a>
 
@@ -36,11 +36,11 @@
                 <td><%= clientes.telefone_clientes %></td>
 
                 <td>
-                    <a href="/produto/editar/<%= clientes.id_clientes %>">
+                    <a href="/clientes/editar/<%= clientes.id_clientes %>">
                         <button>Editar</button>
                     </a>
 
-                    <a href="/produto/deletar/<%= clientes.id_clientes %>" onclick="return confirm('Deseja deletar?')">
+                    <a href="/clientes/deletar/<%= clientes.id_clientes %>" onclick="return confirm('Deseja deletar?')">
                         <button>Deletar</button>
                     </a>
                 </td>
@@ -48,5 +48,7 @@
         <% }) %>
     </table>
 
+    <a href="/"><button>Voltar</button></a>
+    
 </body>
 </html>

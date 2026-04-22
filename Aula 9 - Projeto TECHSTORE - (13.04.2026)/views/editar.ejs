@@ -12,7 +12,7 @@
 
         <h2>Editar Cliente</h2>
 
-        <form action="/cliente/atualizar" method="POST">
+        <form action="/clientes/atualizar" method="POST">
 
             <input type="hidden" name="id_clientes" value="<%= registro.id_clientes %>">
 
@@ -35,7 +35,7 @@
 
         <h2>Editar Produto</h2>
 
-        <form action="/produto/atualizar" method="POST">
+        <form action="/produtos/atualizar" method="POST">
 
             <input type="hidden" name="id_produtos" value="<%= registro.id_produtos %>">
 
@@ -54,6 +54,25 @@
                     </option>
                 <% }) %>
             </select><br><br>
+
+            <button type="submit">Salvar</button>
+        </form>
+
+    <% } %>
+
+
+
+    <% if (tipo === 'categoria') { %>
+
+        <h2>Editar Categoria</h2>
+
+        <form action="/categorias/atualizar" method="POST">
+
+            <input type="hidden" name="id_categorias" value="<%= registro.id_categorias %>">
+
+            <label>Nome:</label><br>
+            <input type="text" name="nome_categorias" value="<%= registro.nome_categorias %>" required><br><br>
+
 
             <button type="submit">Salvar</button>
         </form>
