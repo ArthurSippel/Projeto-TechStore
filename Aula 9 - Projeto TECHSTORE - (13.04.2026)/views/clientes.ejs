@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Clientes</title>
+    <title>TECHSTORE_Admin</title>
     <script>
 
         function confirmDelete() {
@@ -10,45 +10,259 @@
         }
 
     </script>
+
+
+
+    <style>
+
+
+        /* Body inteiro */
+        body {
+            display: grid;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+
+            /* Cabeçalho */
+            .cabecalho{
+                display: flex;
+                background-color: #1f2c39;
+                padding-left: 10px;
+
+            }
+
+                .logo{
+                    color: #f4f6f9;   
+                    font-size: 30px;
+                }
+
+
+                .logo2{
+                    padding-left: 10px;
+                    color: #155cc7; 
+                    font-size: 30px;
+                }
+
+
+
+
+            /* Parte de baixo sem ser cabeçalho */
+            .corpo{
+                display: flex;
+            }
+
+
+                /* Barra da esquerda */
+                .left_bar{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #2c3f52;
+                    width: 200px;
+                    height: 100vh;
+                    align-items: center;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    padding-top: 20px;
+                    gap: 20px;
+                }
+
+                    .btn_clientes{
+                        background-color: #2c3f52;
+                        color: #f4f6f9;
+                        font-size: 15px;
+                        height: 45px;
+                        width: 200px;
+                        text-align: left;
+                        border-radius: 5px;
+                        border-color: #364e67;
+                        
+                    }
+
+                    .btn_produtos{
+                        background-color: #2c3f52;
+                        color: #f4f6f9;
+                        font-size: 15px;
+                        height: 45px;
+                        width: 200px;
+                        text-align: left;
+                        border-radius: 5px;
+                        border-color: #364e67;
+                        
+                    }
+
+                    .btn_categorias{
+                        background-color: #2c3f52;
+                        color: #f4f6f9;
+                        font-size: 15px;
+                        height: 45px;
+                        width: 200px;
+                        text-align: left;
+                        border-radius: 5px;
+                        border-color: #364e67;
+                        
+                    }
+
+                
+
+                /* conteudo */
+                    .conteudo{
+                        padding-left: 20px;
+                        width: 100%;
+
+                    }
+
+                        .cabecalho_conteudo{
+                            color:#2c3f52;
+                            display: flex;
+                            justify-content: space-between;
+                            padding-top: 10px;
+                            padding-right: 30px;
+                            align-items: center;
+                        }
+
+                            .btn_novo{
+                                background-color:#27c715;
+                                color: #f4f6f9;
+                                font-size: 12px;
+                                height: 40px;
+                                width: 120px;
+                                text-align: center;
+                                border-radius: 5px;
+                                border:#0077ef00
+                                
+                            }
+
+                        
+                        table{
+                            width: 100%;
+                            border-collapse: collapse; /* junta as bordas */
+
+                        }
+
+                            th, td {
+                                border: 1px solid #ccc;
+                                padding: 10px;
+                                color:#2c3e50;
+                            }
+
+                            th {
+                                background-color: #2c3e50;
+                                color: white;
+                                text-align: left;
+                            }
+
+
+                            .btns_table {
+                                border: none;
+                                padding: 10px;
+                            }
+
+                        
+                            .btn_edit {
+                                background-color: #3498db;
+                                color: white;
+                                font-size: 12px;
+                                height: 25px;
+                                width: 80px;
+                                text-align: center;
+                                border-radius: 5px;
+                                border:#0077ef00
+                            }
+
+                            .btn_del {
+                                background-color: #e74c3c;
+                                color: white;
+                                font-size: 12px;
+                                height: 25px;
+                                width: 80px;
+                                text-align: center;
+                                border-radius: 5px;
+                                border:#0077ef00
+                            }
+
+
+
+
+
+
+
+    </style>
+
 </head>
 <body>
+    <div class = "cabecalho">
+            <h1 class = "logo">TECHSTORE</h1>
 
-    <h1>Clientes Cadastrados</h1>
+            <h1 class = "logo2" >Cadastros</h1>
+    </div>
 
-    <a href="/clientes/form">
-        <button>Novo Cliente</button>
-    </a>
+    <div class = "corpo">
+        <div class = "left_bar">
+            <a href="/clientes">
+                <button class = "btn_clientes">Clientes</button>
+            </a>
+
+            <a href="/produtos">
+                <button class = "btn_produtos">Produtos</button>
+            </a>
+
+            <a href="/categorias">
+                <button class = "btn_categorias">Categorias</button>
+        </a>
+
+        </div>
 
 
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-        </tr>
+        <div class = "conteudo">
 
-        <% registros.forEach(clientes => { %>
-            <tr>
-                <td><%= clientes.id_clientes %></td>
-                <td><%= clientes.nome_clientes %></td>
-                <td><%= clientes.email_clientes %></td>
-                <td><%= clientes.telefone_clientes %></td>
+            <div class = "cabecalho_conteudo">
 
-                <td>
-                    <a href="/clientes/editar/<%= clientes.id_clientes %>">
-                        <button>Editar</button>
-                    </a>
+                <h1>Clientes</h1>
 
-                    <a href="/clientes/deletar/<%= clientes.id_clientes %>" onclick="return confirm('Deseja deletar?')">
-                        <button>Deletar</button>
-                    </a>
-                </td>
-            </tr>
-        <% }) %>
-    </table>
+                <a href="/clientes/form">
+                    <button class="btn_novo">+ Novo Cliente</button>
+                </a>
+            </div>
 
-    <a href="/"><button>Voltar</button></a>
+            
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                </tr>
+
+                <% registros.forEach(clientes => { %>
+                    <tr>
+                        <td><%= clientes.id_clientes %></td>
+                        <td><%= clientes.nome_clientes %></td>
+                        <td><%= clientes.email_clientes %></td>
+                        <td><%= clientes.telefone_clientes %></td>
+
+                        <td class = "btns_table">
+                            <a href="/clientes/editar/<%= clientes.id_clientes %>">
+                                <button class = "btn_edit">Editar</button>
+                            </a>
+
+                            <a href="/clientes/deletar/<%= clientes.id_clientes %>" onclick="return confirm('Deseja deletar?')">
+                                <button class = "btn_del">Deletar</button>
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+
+            </table>
+
+            
+
+        </div>
+
+
+
+    </div>
     
 </body>
 </html>

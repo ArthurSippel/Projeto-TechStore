@@ -2,85 +2,263 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Editar</title>
+    <title>TECHSTORE_Admin</title>
+
+
+
+    <style>
+
+
+        /* Body inteiro */
+        body {
+            display: grid;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+
+        /* Cabeçalho */
+        .cabecalho{
+            display: flex;
+            background-color: #1f2c39;
+            padding-left: 10px;
+
+        }
+
+        .logo{
+            color: #f4f6f9;   
+            font-size: 30px;
+        }
+
+
+        .logo2{
+            padding-left: 10px;
+            color: #155cc7; 
+            font-size: 30px;
+        }
+
+
+
+
+
+        .corpo{
+            display: flex;
+        }
+
+
+        /* Barra da esquerda */
+        .left_bar{
+            display: flex;
+            flex-direction: column;
+            background-color: #2c3f52;
+            width: 200px;
+            height: 100vh;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 20px;
+            gap: 20px;
+        }
+
+        .btn_clientes{
+            background-color: #2c3f52;
+            color: #f4f6f9;
+            font-size: 15px;
+            height: 45px;
+            width: 200px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #364e67;
+            
+        }
+
+        .btn_produtos{
+            background-color: #2c3f52;
+            color: #f4f6f9;
+            font-size: 15px;
+            height: 45px;
+            width: 200px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #364e67;
+            
+        }
+
+        .btn_categorias{
+            background-color: #2c3f52;
+            color: #f4f6f9;
+            font-size: 15px;
+            height: 45px;
+            width: 200px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #364e67;
+            
+        }
+
+
+        /* conteudo */
+        .conteudo{
+            padding-left: 20px;
+            width: 100%;
+
+        }
+
+            .cabecalho_conteudo{
+                color:#2c3f52;
+                display: flex;
+                padding-top: 10px;
+                padding-right: 30px;
+                align-items: center;
+            }
+
+
+            form{
+                width: 400px;
+                border: 1px solid #1f2c39;
+                border-radius: 10px;
+                color:#2c3f52;
+                display: flex;
+                flex-direction: column;
+                padding-left: 20px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+
+            form label{
+                font-size: 12px;
+            }
+
+            form input, select{
+                width: 200px;
+                border-radius: 5px;    
+                border: 1px solid #2c3f52;            
+            }
+
+
+            .btn_salvar{
+                background-color:#27c715;
+                color: #f4f6f9;
+                font-size: 12px;
+                height: 30px;
+                width: 100px;
+                text-align: center;
+                border-radius: 5px;
+                border:#0077ef00
+            }
+
+
+
+
+
+
+
+
+    </style>
+
 </head>
 <body>
 
-    <h1>EDITAR CADASTROS</h1>
+    <div class = "cabecalho">
+            <h1 class = "logo">TECHSTORE</h1>
 
-    <% if (tipo === 'cliente') { %>
+            <h1 class = "logo2" >Cadastros</h1>
+    </div>
 
-        <h2>Editar Cliente</h2>
+    <div class = "corpo">
+        <div class = "left_bar">
+            <a href="/clientes">
+                <button class = "btn_clientes">Clientes</button>
+            </a>
 
-        <form action="/clientes/atualizar" method="POST">
+            <a href="/produtos">
+                <button class = "btn_produtos">Produtos</button>
+            </a>
 
-            <input type="hidden" name="id_clientes" value="<%= registro.id_clientes %>">
+            <a href="/categorias">
+                <button class = "btn_categorias">Categorias</button>
+        </a>
 
-            <label>Nome:</label><br>
-            <input type="text" name="nome_clientes" value="<%= registro.nome_clientes %>" required><br><br>
-
-            <label>Email:</label><br>
-            <input type="email" name="email_clientes" value="<%= registro.email_clientes %>" required><br><br>
-
-            <label>Telefone:</label><br>
-            <input type="text" name="telefone_clientes" value="<%= registro.telefone_clientes %>" required><br><br>
-
-            <button type="submit">Salvar</button>
-        </form>
-
-    <% } %>
+        </div>
 
 
-    <% if (tipo === 'produto') { %>
+        <div class = "conteudo">
+            <% if (tipo === 'cliente') { %>
 
-        <h2>Editar Produto</h2>
+                <h2 class = "cabecalho_conteudo">Editar Cliente</h2>
 
-        <form action="/produtos/atualizar" method="POST">
+                <form action="/clientes/atualizar" method="POST">
 
-            <input type="hidden" name="id_produtos" value="<%= registro.id_produtos %>">
+                    <input type="hidden" name="id_clientes" value="<%= registro.id_clientes %>">
 
-            <label>Nome:</label><br>
-            <input type="text" name="nome_produtos" value="<%= registro.nome_produtos %>" required><br><br>
+                    <label>Nome:</label>
+                    <input type="text" name="nome_clientes" value="<%= registro.nome_clientes %>" required><br>
 
-            <label>Preço:</label><br>
-            <input type="number" name="preco_produtos" step="0.01" value="<%= registro.preco_produtos %>" required><br><br>
+                    <label>Email:</label>
+                    <input type="email" name="email_clientes" value="<%= registro.email_clientes %>" required><br>
 
-            <label>Categoria:</label><br>
-            <select name="id_categorias" required>
-                <% categorias.forEach(categorias => { %>
-                    <option value="<%= categorias.id_categorias %>" 
-                        <%= categorias.id_categorias == registro.id_categorias ? 'selected' : '' %>>
-                        <%= categorias.nome_categorias %>
-                    </option>
-                <% }) %>
-            </select><br><br>
+                    <label>Telefone:</label>
+                    <input type="text" name="telefone_clientes" value="<%= registro.telefone_clientes %>" required><br>
 
-            <button type="submit">Salvar</button>
-        </form>
+                   
+                    <button type="submit" class="btn_salvar">Salvar</button>
 
-    <% } %>
+                </form>
+
+            <% } %>
 
 
+            <% if (tipo === 'produto') { %>
 
-    <% if (tipo === 'categoria') { %>
+                <h2 class = "cabecalho_conteudo">Editar Produto</h2>
 
-        <h2>Editar Categoria</h2>
+                <form action="/produtos/atualizar" method="POST">
 
-        <form action="/categorias/atualizar" method="POST">
+                    <input type="hidden" name="id_produtos" value="<%= registro.id_produtos %>">
 
-            <input type="hidden" name="id_categorias" value="<%= registro.id_categorias %>">
+                    <label>Nome:</label>
+                    <input type="text" name="nome_produtos" value="<%= registro.nome_produtos %>" required><br>
 
-            <label>Nome:</label><br>
-            <input type="text" name="nome_categorias" value="<%= registro.nome_categorias %>" required><br><br>
+                    <label>Preço:</label>
+                    <input type="number" name="preco_produtos" step="0.01" value="<%= registro.preco_produtos %>" required><br>
+
+                    <label>Categoria:</label>
+                    <select name="id_categorias" required>
+                        <% categorias.forEach(categorias => { %>
+                            <option value="<%= categorias.id_categorias %>" 
+                                <%= categorias.id_categorias == registro.id_categorias ? 'selected' : '' %>>
+                                <%= categorias.nome_categorias %>
+                            </option>
+                        <% }) %>
+                    </select><br>
+
+                    <button type="submit" class = "btn_salvar">Salvar</button>
+                </form>
+
+            <% } %>
 
 
-            <button type="submit">Salvar</button>
-        </form>
 
-    <% } %>
+            <% if (tipo === 'categoria') { %>
 
-    <br>
-    <a href="/"><button>Voltar</button></a>
+                <h2 class = "cabecalho_conteudo">Editar Categoria</h2>    
+
+                <form action="/categorias/atualizar" method="POST">
+
+                    <input type="hidden" name="id_categorias" value="<%= registro.id_categorias %>">
+
+                    <label>Nome:</label>
+                    <input type="text" name="nome_categorias" value="<%= registro.nome_categorias %>" required><br>
+
+
+                    <button type="submit" class = "btn_salvar">Salvar</button>
+                </form>
+
+            <% } %>
+        </div>   
+
+    </div>        
 
 </body>
 </html>

@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Produtos</title>
+    <title>TECHSTORE_Admin</title>
+    
     <script>
 
         function confirmDelete() {
@@ -10,22 +11,123 @@
         }
 
     </script>
+
+
+
+    <style>
+
+
+        /* Body inteiro */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+
+        /* Cabeçalho */
+        .cabecalho{
+            display: flex;
+            background-color: #1f2c39;
+            padding-left: 10px;
+
+        }
+
+        .logo{
+            color: #f4f6f9;   
+            font-size: 30px;
+        }
+
+
+        .logo2{
+            padding-left: 10px;
+            color: #155cc7; 
+            font-size: 30px;
+        }
+
+
+
+
+
+        /* Barra da esquerda */
+        .left_bar{
+            display: flex;
+            flex-direction: column;
+            background-color: #2c3f52;
+            width: 200px;
+            height: 100vh;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 20px;
+            gap: 20px;
+        }
+
+        .btn_clientes{
+            background-color: #2c3f52;
+            color: #f4f6f9;
+            font-size: 15px;
+            height: 45px;
+            width: 200px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #364e67;
+            
+        }
+
+        .btn_produtos{
+            background-color: #2c3f52;
+            color: #f4f6f9;
+            font-size: 15px;
+            height: 45px;
+            width: 200px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #364e67;
+            
+        }
+
+        .btn_categorias{
+            background-color: #2c3f52;
+            color: #f4f6f9;
+            font-size: 15px;
+            height: 45px;
+            width: 200px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #364e67;
+            
+        }
+
+    </style>
 </head>
 <body>
 
-    <h1>Cadastros TechStore</h1>
+    <div class = "cabecalho">
+            <h1 class = "logo">TECHSTORE</h1>
 
-    <a href="/clientes">
-        <button>Clientes</button>
-    </a>
+            <h1 class = "logo2" >Cadastros</h1>
+    </div>
 
-    <a href="/produtos">
-        <button>Produtos</button>
-    </a>
+    <div class = "corpo">
+        <div class = "left_bar">
+            <a href="/clientes">
+                <button class = "btn_clientes">Clientes</button>
+            </a>
 
-    <a href="/categorias">
-        <button>Categorias</button>
-    </a>
+            <a href="/produtos">
+                <button class = "btn_produtos">Produtos</button>
+            </a>
+
+            <a href="/categorias">
+                <button class = "btn_categorias">Categorias</button>
+            </a>
+
+        </div>
+
+        
+
+    </div>
 
 </body>
 </html>
